@@ -1,147 +1,682 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>scullion</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg: #1A2517;
-            --text: #f0f0f0;
-            --muted: #bbb;
-            --accent: #ACC8A2;
-            --border: #2F3A2A;
-            --input-bg: #243022;
-            --header-bg: rgba(26, 37, 23, 0.98);
-        }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            background: var(--bg); 
-            color: var(--text); 
-        }
-        
-        header { 
-            padding: 15px; 
-            border-bottom: 1px solid var(--border); 
-            position: sticky; 
-            top: 0; 
-            background: var(--header-bg); 
-            z-index: 100; 
-            backdrop-filter: blur(10px); 
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">scullion</title>
 
-        .header-top { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            max-width: 850px; 
-            margin: 0 auto 5px; 
-            position: relative;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
-        .site-title { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            font-size: 1.95rem; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            letter-spacing: -1px;
-            flex-grow: 1;
-            text-align: center;
-        }
+  <style>
+    :root {
+      --bg: #1A2517;
+      --text: #f0f0f0;
+      --muted: #bbb;
+      --accent: #ACC8A2;
+      --border: #2F3A2A;
+      --input-bg: #243022;
+      --header-bg: rgba(26, 37, 23, 0.98);
 
-        .broccoli-svg {
-            transition: transform 0.4s ease;
-        }
-
-        .site-title:hover .broccoli-svg {
-            transform: translateY(-4px) rotate(8deg) scale(1.12);
-        }
-
-        .controls { 
-            display: flex; 
-            justify-content: center; 
-            gap: 8px; 
-            flex-wrap: wrap; 
-        }
-        .btn { 
-            background: var(--input-bg); 
-            border: 1px solid var(--border); 
-            color: var(--text); 
-            padding: 10px 15px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            font-size: 0.85rem; 
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .btn.active, .btn:hover {
-            background: var(--accent); 
-            color: #1A2517; 
-            border-color: var(--accent);
-        }
-
-        .passport-btn { 
-            border-color: var(--accent); 
-            color: var(--accent); 
-            background: transparent; 
-            text-decoration: none;
-        }
-        .passport-btn:hover {
-            background: var(--accent); 
-            color: #1A2517;
-        }
-
-        @media (max-width: 600px) {
-            .header-top { margin-bottom: 10px; }
-            .site-title { font-size: 1.5rem; margin: 0 5px; }
-            .btn, .passport-btn { padding: 8px 12px; font-size: 0.8rem; }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="header-top">
-        <div class="site-title">
-            scull
-            <svg class="broccoli-svg" width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 40 L18 23" stroke="#ACC8A2" stroke-width="5.5" stroke-linecap="round"/>
-                <ellipse cx="18" cy="16" rx="12" ry="10" fill="#ACC8A2"/>
-                <ellipse cx="10.5" cy="12" rx="6.5" ry="5.5" fill="#7FA46F" transform="rotate(-35 10.5 12)"/>
-                <ellipse cx="25.5" cy="13.5" rx="6" ry="5" fill="#7FA46F" transform="rotate(40 25.5 13.5)"/>
-                <ellipse cx="14" cy="8" rx="4.5" ry="4" fill="#ACC8A2"/>
-                <ellipse cx="22" cy="9" rx="4" ry="3.5" fill="#ACC8A2"/>
-                <circle cx="16" cy="14" r="1.8" fill="#5E8A5A"/>
-                <circle cx="20" cy="15" r="1.2" fill="#5E8A5A"/>
-            </svg>
-            on
-        </div>
-
-        <div class="controls">
-            <button class="btn active" id="btn-en" onclick="setLang('en')">EN</button>
-            <button class="btn" id="btn-uk" onclick="setLang('uk')">UA</button>
-            <a href="about.html" class="btn passport-btn">ABOUT US</a>
-        </div>
-    </div>
-</header>
-
-<script>
-    let currentLang = 'en';
-
-    function setLang(lang) {
-        currentLang = lang;
-        document.getElementById('btn-uk').classList.toggle('active', lang === 'uk');
-        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      --paper: #f3f0e6;
+      --paper-line: rgba(36, 48, 34, 0.22);
+      --ink: #1A2517;
+      --tape: rgba(255, 255, 255, 0.22);
     }
 
-    window.onload = () => setLang('en');
-</script>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      background-image: radial-gradient(circle at 50% -20%, #2f3a2a 0%, #1A2517 60%);
+      min-height: 100vh;
+    }
 
+    header {
+      padding: 15px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--header-bg);
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 980px;
+      margin: 0 auto 5px;
+      gap: 10px;
+    }
+
+    .site-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.95rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      flex-grow: 1;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .broccoli-svg { transition: transform 0.4s ease; }
+    .site-title:hover .broccoli-svg { transform: translateY(-4px) rotate(8deg) scale(1.12); }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .btn.active, .btn:hover {
+      background: var(--accent);
+      color: #1A2517;
+      border-color: var(--accent);
+    }
+
+    .passport-btn {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: transparent;
+    }
+    .passport-btn:hover { background: var(--accent); color: #1A2517; }
+
+    .container {
+      max-width: 980px;
+      margin: 26px auto 80px;
+      padding: 0 20px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5.5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.02;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      margin: 0 0 18px;
+      color: #cfcfcf;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 60ch;
+    }
+
+    /* ===== “Вирваний аркуш” ===== */
+    .recipe-sheet {
+      margin-top: 12px;
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 14px;
+      padding: 22px 20px 18px;
+      position: relative;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* перфорація/рваний край зліва */
+    .recipe-sheet::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 0;
+      bottom: 0;
+      width: 22px;
+      background:
+        radial-gradient(circle at 50% 10px, transparent 8px, var(--paper) 9px) 0 0/22px 22px;
+      opacity: 0.95;
+      filter: drop-shadow(2px 0 0 rgba(0,0,0,0.08));
+    }
+
+    /* лінії зошита */
+    .recipe-sheet::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0px,
+          transparent 26px,
+          var(--paper-line) 27px
+        );
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .recipe-inner { position: relative; z-index: 1; }
+
+    .recipe-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .recipe-title {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      text-transform: uppercase;
+    }
+
+    .recipe-meta {
+      font-family: "Roboto Mono", monospace;
+      font-size: 0.82rem;
+      opacity: 0.65;
+      white-space: nowrap;
+    }
+
+    .recipe-columns {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .recipe-block h3 {
+      margin: 0 0 8px;
+      font-size: 0.85rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-family: "Roboto Mono", monospace;
+      opacity: 0.7;
+    }
+
+    .recipe-block ul, .recipe-block ol {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    .recipe-block li { margin-bottom: 6px; }
+
+    .recipe-block .small {
+      font-family: "Roboto Mono", monospace;
+      font-size: 0.88rem;
+      opacity: 0.7;
+      margin-top: 10px;
+    }
+
+    /* ===== Полароїди ===== */
+    .polaroid-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      justify-items: end;
+    }
+
+    .polaroid {
+      width: min(360px, 100%);
+      background: #f6f6f4;
+      border-radius: 14px;
+      padding: 12px 12px 14px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      outline: none;
+    }
+
+    .polaroid:focus-visible {
+      box-shadow: 0 0 0 3px rgba(172,200,162,0.35), 0 18px 45px rgba(0,0,0,0.45);
+    }
+
+    .polaroid:hover { transform: translateY(-3px) rotate(var(--r)); }
+
+    .polaroid::before,
+    .polaroid::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 34px;
+      background: var(--tape);
+      top: -14px;
+      left: 34px;
+      transform: rotate(-7deg);
+      border-radius: 6px;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+    .polaroid::after {
+      width: 95px;
+      height: 30px;
+      top: auto;
+      bottom: -12px;
+      left: auto;
+      right: 28px;
+      transform: rotate(9deg);
+      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.22);
+    }
+
+    .polaroid .photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #ddd;
+    }
+    .polaroid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .polaroid .caption {
+      font-family: "Roboto Mono", monospace;
+      font-size: 0.85rem;
+      color: #3a3a3a;
+      margin-top: 10px;
+      letter-spacing: 0.2px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      opacity: 0.9;
+    }
+
+    .polaroid .caption span:last-child { opacity: 0.65; }
+
+    .polaroid.active {
+      box-shadow: 0 0 0 3px rgba(172,200,162,0.35), 0 18px 45px rgba(0,0,0,0.45);
+      transform: translateY(-2px) rotate(var(--r));
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .polaroid-grid { justify-items: start; margin-top: 14px; }
+      .polaroid { width: min(420px, 100%); }
+      .recipe-columns { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .site-title { font-size: 1.5rem; }
+      .btn { padding: 8px 12px; font-size: 0.8rem; }
+      .recipe-sheet { padding: 20px 16px 16px; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="header-top">
+    <div class="site-title">
+      scull
+      <svg class="broccoli-svg" width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 40 L18 23" stroke="#ACC8A2" stroke-width="5.5" stroke-linecap="round"/>
+        <ellipse cx="18" cy="16" rx="12" ry="10" fill="#ACC8A2"/>
+        <ellipse cx="10.5" cy="12" rx="6.5" ry="5.5" fill="#7FA46F" transform="rotate(-35 10.5 12)"/>
+        <ellipse cx="25.5" cy="13.5" rx="6" ry="5" fill="#7FA46F" transform="rotate(40 25.5 13.5)"/>
+        <ellipse cx="14" cy="8" rx="4.5" ry="4" fill="#ACC8A2"/>
+        <ellipse cx="22" cy="9" rx="4" ry="3.5" fill="#ACC8A2"/>
+        <circle cx="16" cy="14" r="1.8" fill="#5E8A5A"/>
+        <circle cx="20" cy="15" r="1.2" fill="#5E8A5A"/>
+      </svg>
+      on
+    </div>
+
+    <div class="controls">
+      <button class="btn active" id="btn-uk" onclick="setLang('uk')">UA</button>
+      <button class="btn" id="btn-en" onclick="setLang('en')">EN</button>
+      <a href="about.html" class="btn passport-btn" id="about-link">ПРО МЕНЕ</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <h1 id="hero-title">—</h1>
+      <p id="hero-subtitle">—</p>
+
+      <div class="recipe-sheet" aria-label="recipe sheet">
+        <div class="recipe-inner">
+          <div class="recipe-head">
+            <h2 class="recipe-title" id="recipe-title">—</h2>
+            <div class="recipe-meta" id="recipe-meta">—</div>
+          </div>
+
+          <div class="recipe-columns">
+            <div class="recipe-block">
+              <h3 id="ingredients-title">—</h3>
+              <ul id="recipe-ingredients"></ul>
+            </div>
+
+            <div class="recipe-block">
+              <h3 id="steps-title">—</h3>
+              <ol id="recipe-steps"></ol>
+              <div class="small" id="recipe-extra"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="polaroid-grid" id="polaroid-grid"></div>
+  </section>
+</main>
+
+<script>
+  let currentLang = "uk";
+  let currentRecipeId = "cherries";
+
+  const data = {
+    uk: {
+      pageTitle: "scullion",
+      about: "ПРО МЕНЕ",
+      heroTitle: "Home cooking, but sharp.",
+      heroSubtitle: "Натисни на фото — і рецепт відкриється на аркуші.",
+      ingredientsTitle: "Інгредієнти",
+      stepsTitle: "Рецепт",
+      recipes: {
+        cherries: {
+          title: "Вареники з вишнями",
+          meta: "тісто на окропі",
+          ingredients: [
+            "Пшеничне борошно — 500 г",
+            "Яйце — 1 шт.",
+            "Олія — 2 ст. л.",
+            "Окріп — 200 мл",
+            "Сіль — дрібка",
+            "Вишні без кісточок — ~3 шт. на вареник",
+            "Цукор — 1 ч. л. на вареник",
+            "Цукор для сиропу — 2–3 ст. л."
+          ],
+          steps: [
+            "Змішай борошно з сіллю. Додай яйце й олію.",
+            "Вливай окріп тонкою цівкою та замішуй спочатку ложкою, потім руками. Доведи до м’якого еластичного тіста.",
+            "Накрий і дай відпочити 20–30 хвилин.",
+            "Розкачай у тонкий пласт, виріж кружечки. На кожен поклади вишні та 1 ч. л. цукру. Заліпи краї.",
+            "Вари у підсоленій воді 3–5 хвилин після спливання."
+          ],
+          extra: "Сироп: сік від вишень прогрій з 2–3 ст. л. цукру на малому вогні. Полий готові вареники."
+        },
+
+        curd_poppy: {
+          title: "Вареники з сиром та маком",
+          meta: "вода 70–80°C",
+          ingredients: [
+            "Пшеничне борошно — 500 г",
+            "Гаряча вода (70–80°C) — 250 мл",
+            "Соняшникова олія — 4 ст. л.",
+            "Сіль — ½ ч. л.",
+            "Цукор — дрібка",
+            "Домашній сир — 500 г",
+            "Яйце — 1 шт.",
+            "Мак — 5 ст. л.",
+            "Цукор — 2–3 ст. л.",
+            "Сметана — 2–3 ст. л.",
+            "Згущене молоко — 2–3 ст. л."
+          ],
+          steps: [
+            "Змішай борошно, сіль і дрібку цукру. Влий гарячу воду та олію. Замішай тісто (спершу ложкою, потім руками).",
+            "Загорни й дай відпочити 20–30 хвилин.",
+            "Розкачай тонко (1–2 мм), виріж кружечки.",
+            "Начинка: змішай сир, яйце, мак і цукор до однорідності.",
+            "Начини, зліпи вареники (можна «сонечком»).",
+            "Вари у підсоленій воді 3–5 хвилин після спливання."
+          ],
+          extra: "Соус: змішай сметану зі згущеним молоком. Полий вареники, за бажанням додай ще маку."
+        },
+
+        sweet_cherry_pink: {
+          title: "Рожеві вареники з черешнею",
+          meta: "тісто на черешневому соку",
+          ingredients: [
+            "Пшеничне борошно — 500 г",
+            "Яйце — 1 шт.",
+            "Олія — 2 ст. л.",
+            "Гарячий черешневий сік — 200 мл",
+            "Сіль — дрібка",
+            "Черешні без кісточок — ~3 шт. на вареник",
+            "Цукор — 1 ч. л. на вареник",
+            "Цукор для сиропу — 2–3 ст. л."
+          ],
+          steps: [
+            "Змішай борошно з сіллю. Додай яйце й олію.",
+            "Вливай гарячий черешневий сік тонкою цівкою та замішуй: спершу ложкою, потім руками. Доведи до м’якого еластичного тіста.",
+            "Накрий і дай відпочити 20–30 хвилин.",
+            "Розкачай тонко, виріж кружечки. На кожен поклади черешні та 1 ч. л. цукру. Заліпи краї.",
+            "Вари у підсоленій воді 3–5 хвилин після спливання."
+          ],
+          extra: "Сироп: сік від черешень прогрій з 2–3 ст. л. цукру на малому вогні. Полий готові вареники."
+        }
+      },
+      polaroids: [
+        { id: "sweet_cherry_pink", src: "images/pink_cherry.jpg", tag: "#черешня", date: "—", rotate: "-2deg" },
+        { id: "cherries", src: "images/cherries.jpg", tag: "#вишні", date: "—", rotate: "2.5deg" },
+        { id: "curd_poppy", src: "images/curd_poppy.jpg", tag: "#сир_мак", date: "—", rotate: "-1deg" }
+      ]
+    },
+
+    en: {
+      pageTitle: "scullion",
+      about: "ABOUT",
+      heroTitle: "Home cooking, but sharp.",
+      heroSubtitle: "Tap a photo to open the recipe on the page.",
+      ingredientsTitle: "Ingredients",
+      stepsTitle: "Method",
+      recipes: {
+        cherries: {
+          title: "Cherry Varenyky",
+          meta: "hot water dough",
+          ingredients: [
+            "Wheat flour — 500 g",
+            "Egg — 1",
+            "Oil — 2 tbsp",
+            "Boiling water — 200 ml",
+            "Salt — a pinch",
+            "Pitted cherries — ~3 per dumpling",
+            "Sugar — 1 tsp per dumpling",
+            "Sugar for syrup — 2–3 tbsp"
+          ],
+          steps: [
+            "Mix flour with salt. Add egg and oil.",
+            "Pour boiling water in a thin stream, mix with a spoon, then knead by hand until soft and elastic.",
+            "Cover and rest 20–30 minutes.",
+            "Roll thin, cut circles. Add cherries and 1 tsp sugar, seal tightly.",
+            "Boil in salted water for 3–5 minutes after they float."
+          ],
+          extra: "Syrup: warm the cherry juices with 2–3 tbsp sugar on low heat. Pour over the varenky."
+        },
+
+        curd_poppy: {
+          title: "Curd & Poppy Seed Varenyky",
+          meta: "70–80°C water",
+          ingredients: [
+            "Wheat flour — 500 g",
+            "Hot water (70–80°C) — 250 ml",
+            "Sunflower oil — 4 tbsp",
+            "Salt — ½ tsp",
+            "Sugar — a pinch",
+            "Farmer’s curd — 500 g",
+            "Egg — 1",
+            "Poppy seeds — 5 tbsp",
+            "Sugar — 2–3 tbsp",
+            "Sour cream — 2–3 tbsp",
+            "Condensed milk — 2–3 tbsp"
+          ],
+          steps: [
+            "Mix flour, salt and a pinch of sugar. Add hot water and oil. Knead (spoon first, then hands).",
+            "Wrap and rest 20–30 minutes.",
+            "Roll thin (1–2 mm), cut circles.",
+            "Filling: mix curd, egg, poppy seeds and sugar until smooth.",
+            "Fill and seal.",
+            "Boil in salted water for 3–5 minutes after floating."
+          ],
+          extra: "Sauce: mix sour cream with condensed milk. Pour over and add extra poppy seeds if you like."
+        },
+
+        sweet_cherry_pink: {
+          title: "Pink Sweet Cherry Varenyky",
+          meta: "sweet cherry juice dough",
+          ingredients: [
+            "Wheat flour — 500 g",
+            "Egg — 1",
+            "Oil — 2 tbsp",
+            "Hot sweet cherry juice — 200 ml",
+            "Salt — a pinch",
+            "Pitted sweet cherries — ~3 per dumpling",
+            "Sugar — 1 tsp per dumpling",
+            "Sugar for syrup — 2–3 tbsp"
+          ],
+          steps: [
+            "Mix flour with salt. Add egg and oil.",
+            "Pour hot sweet cherry juice in a thin stream, mix with a spoon, then knead by hand until soft and elastic.",
+            "Cover and rest 20–30 minutes.",
+            "Roll thin, cut circles. Add cherries and 1 tsp sugar, seal tightly.",
+            "Boil in salted water for 3–5 minutes after they float."
+          ],
+          extra: "Syrup: warm the drained juices with 2–3 tbsp sugar on low heat. Pour over the varenky."
+        }
+      },
+      polaroids: [
+        { id: "sweet_cherry_pink", src: "images/pink_cherry.jpg", tag: "#sweet_cherry", date: "—", rotate: "-2deg" },
+        { id: "cherries", src: "images/cherries.jpg", tag: "#cherries", date: "—", rotate: "2.5deg" },
+        { id: "curd_poppy", src: "images/curd_poppy.jpg", tag: "#curd_poppy", date: "—", rotate: "-1deg" }
+      ]
+    }
+  };
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById("btn-uk").classList.toggle("active", lang === "uk");
+    document.getElementById("btn-en").classList.toggle("active", lang === "en");
+    updateUI();
+  }
+
+  function updateUI() {
+    const d = data[currentLang];
+
+    document.documentElement.lang = currentLang === "uk" ? "uk" : "en";
+    document.getElementById("page-title").innerText = d.pageTitle;
+    document.getElementById("about-link").innerText = d.about;
+
+    document.getElementById("hero-title").innerText = d.heroTitle;
+    document.getElementById("hero-subtitle").innerText = d.heroSubtitle;
+
+    document.getElementById("ingredients-title").innerText = d.ingredientsTitle;
+    document.getElementById("steps-title").innerText = d.stepsTitle;
+
+    renderPolaroids(d.polaroids);
+    renderRecipe(currentRecipeId);
+  }
+
+  function renderPolaroids(items) {
+    const wrap = document.getElementById("polaroid-grid");
+    wrap.innerHTML = "";
+
+    items.forEach((p, idx) => {
+      const card = document.createElement("article");
+      card.className = "polaroid";
+      card.tabIndex = 0;
+      card.style.setProperty("--r", p.rotate || (idx % 2 ? "2deg" : "-2deg"));
+      card.classList.toggle("active", p.id === currentRecipeId);
+
+      card.innerHTML = `
+        <div class="photo">
+          <img src="${p.src}" alt="${p.tag}" loading="lazy" />
+        </div>
+        <div class="caption">
+          <span>${p.tag}</span>
+          <span>${p.date}</span>
+        </div>
+      `;
+
+      card.addEventListener("click", () => selectRecipe(p.id));
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          selectRecipe(p.id);
+        }
+      });
+
+      wrap.appendChild(card);
+    });
+  }
+
+  function selectRecipe(id) {
+    currentRecipeId = id;
+
+    // оновити активний стан полароїдів
+    document.querySelectorAll(".polaroid").forEach((el, i) => {
+      const pid = data[currentLang].polaroids[i]?.id;
+      el.classList.toggle("active", pid === currentRecipeId);
+    });
+
+    renderRecipe(id);
+  }
+
+  function renderRecipe(id) {
+    const r = data[currentLang].recipes[id];
+    if (!r) return;
+
+    document.getElementById("recipe-title").innerText = r.title;
+    document.getElementById("recipe-meta").innerText = r.meta;
+
+    const ing = document.getElementById("recipe-ingredients");
+    ing.innerHTML = r.ingredients.map(x => `<li>${escapeHtml(x)}</li>`).join("");
+
+    const steps = document.getElementById("recipe-steps");
+    steps.innerHTML = r.steps.map(x => `<li>${escapeHtml(x)}</li>`).join("");
+
+    document.getElementById("recipe-extra").innerText = r.extra || "";
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  // UA дефолт + дефолтний рецепт (можеш змінити на sweet_cherry_pink якщо хочеш)
+  window.onload = () => {
+    currentRecipeId = "sweet_cherry_pink";
+    setLang("uk");
+  };
+</script>
 </body>
 </html>

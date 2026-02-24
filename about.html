@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">Про мене - scullion</title>
 
-  <!-- Шрифти -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;1,500;1,600&display=swap" rel="stylesheet">
 
   <style>
@@ -35,6 +34,7 @@
       justify-content: space-between;
       position: sticky;
       top: 0;
+      z-index: 100;
     }
 
     .btn-back {
@@ -53,6 +53,11 @@
       border-radius: 6px;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-lang:hover {
+      background: var(--border);
     }
 
     .container {
@@ -86,7 +91,6 @@
       margin: 30px 0 20px;
       padding-left: 18px;
       border-left: 2px solid var(--primary);
-
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: 1.05rem;
@@ -94,14 +98,15 @@
       color: #ddd;
     }
 
-    /* Фінальний акцент */
+    /* Фінальний акцент — ОНОВЛЕНО: жирний курсив */
     .quote-final {
       display: block;
       margin-top: 12px;
       font-family: 'Inter', sans-serif;
-      font-style: normal;
-      font-weight: 700;
+      font-style: italic;      /* Додано курсив */
+      font-weight: 900;       /* Додано потовщення (Black) */
       color: var(--primary);
+      letter-spacing: -0.01em;
     }
 
     .contact-area {
@@ -132,7 +137,7 @@
       uk: {
         title: "Про мене",
         back: "← Головна",
-        contact: "Нагадування: якщо помітив(ла) помилку або маєш ідею для меню — напиши мені будь-де, де зручно.",
+        contact: "Нагадування: якщо Ви помітили помилку або маєте ідею для меню — напишіть мені будь-де, де зручно.",
         content: `
           <p><span class="accent">Якщо чесно</span> — не маю жодного поняття, що тут треба писати. Тому ось мудрість з мультика про пацюка:</p>
 
@@ -182,6 +187,7 @@
       updateUI();
     }
 
+    // Ініціалізація при завантаженні
     updateUI();
   </script>
 </body>

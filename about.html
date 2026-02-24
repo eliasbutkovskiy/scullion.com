@@ -1,181 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">About - scullion</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231A2517'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='50' fill='%23ACC8A2'>SC</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #ACC8A2;
-            --bg: #1A2517;
-            --panel: #243022;
-            --text: #f0f0f0;
-            --muted: #bbb;
-            --border: #2F3A2A;
-        }
-       
-        body {
-            background: var(--bg); color: var(--text);
-            font-family: 'Inter', sans-serif; margin: 0;
-            -webkit-font-smoothing: antialiased;
-            background-image: radial-gradient(circle at 50% -20%, #2f3a2a 0%, #1A2517 60%);
-            min-height: 100vh;
-        }
-       
-        /* Навігація */
-        .nav-glass {
-            background: rgba(26, 37, 23, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border);
-            padding: 15px 25px;
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 1000;
-        }
-        .btn-back {
-            color: var(--muted); text-decoration: none;
-            font-weight: 700; font-size: 0.85rem;
-            text-transform: uppercase; letter-spacing: 1.5px;
-            transition: 0.3s;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .btn-back:hover { color: var(--primary); }
-        .btn-lang {
-            background: transparent; border: 1px solid var(--border);
-            color: var(--primary);
-            padding: 8px 16px; border-radius: 8px;
-            font-weight: 900; cursor: pointer;
-            text-transform: uppercase; font-size: 0.8rem;
-            transition: 0.3s;
-        }
-        .btn-lang:hover { background: var(--primary); color: #1A2517; }
-       
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px 100px; }
-       
-        .hero-title {
-            font-size: clamp(2.8rem, 8vw, 4.5rem);
-            font-weight: 900; text-transform: uppercase;
-            letter-spacing: -2px; line-height: 0.9;
-            margin-bottom: 40px;
-            background: linear-gradient(to bottom, #f0f0f0 40%, #bbb 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-       
-        .main-content { font-size: 1.15rem; line-height: 1.8; color: #ccc; }
-        .main-content p { margin-bottom: 25px; }
-        .accent { color: var(--primary); font-weight: 700; }
-       
-        .feature-note {
-            background: #243022;
-            border-left: 4px solid var(--primary);
-            padding: 30px; border-radius: 0 16px 16px 0;
-            margin: 50px 0; color: #f0f0f0; font-size: 1.05rem;
-            box-shadow: 10px 10px 40px rgba(0,0,0,0.4);
-        }
-       
-        .support-card {
-            background: linear-gradient(145deg, #243022, #1A2517);
-            padding: 40px; border-radius: 24px;
-            border: 1px solid var(--border);
-            text-align: center; margin-top: 60px;
-        }
-        .support-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 25px; }
-        .btn-support {
-            background: var(--primary); color: #1A2517;
-            padding: 16px 40px; border-radius: 12px;
-            text-decoration: none; font-weight: 900;
-            display: inline-block; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;
-        }
-        .btn-support:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(172,200,162,0.4); }
-       
-        .contact-area {
-            margin-top: 60px; border-top: 1px solid var(--border);
-            padding-top: 30px; font-size: 0.9rem; color: var(--muted);
-            font-family: 'Roboto Mono', monospace;
-        }
-        .contact-area a { color: var(--primary); text-decoration: none; font-weight: bold; }
-       
-        @media (max-width: 600px) {
-            .container { margin: 20px auto; }
-            .hero-title { letter-spacing: -1px; margin-bottom: 30px; }
-            .main-content { font-size: 1.05rem; }
-            .feature-note { padding: 20px; }
-            .support-card { padding: 30px 20px; }
-        }
-    </style>
-</head>
-<body>
-    <nav class="nav-glass">
-        <a href="index.html" class="btn-back" id="nav-back"><span>←</span> Main</a>
-        <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">UA</button>
-    </nav>
+<script>
+  const langData = {
+    en: {
+      title: "About<br>Me",
+      back: "Main",
+      supportDesc:
+        "This project runs on passion and coffee. If you want to support new recipes, photoshoots, development, or just say thanks — any help matters:",
+      contact:
+        "Spotted a typo? Got menu ideas, dietary requests, or want to book a dinner? Hit me up:",
+      content: `
+        <p><span class="accent">If I'm honest</span> — I have absolutely no idea what you're supposed to write here.</p>
+        <p>So here’s a bit of wisdom from a cartoon about a rat:</p>
 
-    <div class="container">
-        <h1 class="hero-title" id="title">About<br>Me</h1>
-       
-        <div class="main-content" id="main-text"></div>
-
-        <div class="feature-note">
-            <strong>Started from the bottom.</strong> From washing dishes to creating unforgettable dinners — every plate tells a story.
+        <div class="feature-note" style="margin: 30px 0;">
+          <strong>“Cooking is not for the weak!”</strong> You have to be inventive, brave, try and fail…<br>
+          And don’t think your background can stop you — listen to your soul…<br>
+          This is true: <span class="accent">anyone can cook</span>, but <span class="accent">only the brave reach the heights</span>.
         </div>
 
-        <div class="support-card">
-            <p id="support-desc"></p>
-            <a href="https://send.monobank.ua/jar/ВАШ_JAR_АБО_ІНШЕ" target="_blank" class="btn-support">Support scullion</a>
+        <p>Anyway — welcome. I cook, plate, and obsess over the details so the food speaks louder than this section ever will.</p>
+      `
+    },
+
+    uk: {
+      title: "Про<br>мене",
+      back: "Головна",
+      supportDesc:
+        "Цей проєкт тримається на ентузіазмі та каві. Якщо хочете підтримати нові рецепти, фотосесії, розвиток або просто подякувати — будь-яка допомога важлива:",
+      contact:
+        "Помітили помилку? Маєте ідеї меню, побажання по дієті чи хочете забронювати вечерю? Пишіть:",
+      content: `
+        <p><span class="accent">Якщо чесно</span> — не маю жодного поняття, що тут треба писати.</p>
+        <p>Тому ось мудрість з мультика про пацюка:</p>
+
+        <div class="feature-note" style="margin: 30px 0;">
+          <strong>«Вміння куховарити не для слабаків!»</strong> Треба бути вигадливим, хоробрим, пробувати і помилятись…<br>
+          І не думати, що тобі може стати на заваді твоє походження — слухайся своєї душі…<br>
+          Це правда: <span class="accent">готувати може кожен</span>, але <span class="accent">досягти висот — лиш сміливці</span>!
         </div>
 
-        <div class="contact-area" id="contact-area"></div>
-    </div>
+        <p>Коротше: я готую, подаю й задовбуюсь над деталями так, щоб їжа сказала більше, ніж ця сторінка.</p>
+      `
+    }
+  };
 
-    <script>
-        const langData = {
-            en: {
-                title: "About<br>Me",
-                back: "Main",
-                supportDesc: "This project lives on passion and coffee. If you'd like to support the development, new recipes, photoshoots or just say thanks — any help is greatly appreciated:",
-                contact: "Found a typo? Have menu ideas, dietary requests or want to book a dinner? Drop me a line:",
-                content: `
-                    <p>Hello! I'm Illya — a <span class="accent">private chef from Kropyvnytskyi</span>, Ukraine. Food has always been more than just fuel for me — it's love, tradition, creativity and a way to bring people together.</p>
-                    <p>I started my journey at the very bottom — as a scullion (dishwasher & kitchen helper). Years of hard work in different kitchens taught me discipline, respect for ingredients and the real taste of perfectionism.</p>
-                    <p>Today I create personalized dining experiences: intimate dinners, family celebrations, masterclasses. I love blending Ukrainian culinary heritage with modern techniques — seasonal local products, fermentation, precise plating and unexpected flavor combinations.</p>
-                    <p>Whether it's a quiet evening for two or a big event — every menu is tailored exactly to you: allergies, preferences, mood and story.</p>
-                `
-            },
-            uk: {
-                title: "Про<br>мене",
-                back: "Головна",
-                supportDesc: "Цей проєкт тримається на ентузіазмі та каві. Якщо хочете підтримати нові рецепти, фотосесії, розвиток або просто подякувати — будь-яка допомога важлива:",
-                contact: "Помітили помилку? Маєте ідеї меню, побажання по дієті чи хочете забронювати вечерю? Пишіть:",
-                content: `
-                    <p>Привіт! Я Ілля — <span class="accent">приватний шеф-кухар з Кропивницького</span>. Їжа для мене завжди була чимось більшим, ніж просто їжа — це любов, традиції, творчість і спосіб об’єднувати людей.</p>
-                    <p>Я починав з самої нижньої сходинки — мийником посуду та помічником на кухні (звідси й назва scullion). Роки роботи в різних кухнях навчили мене дисципліни, поваги до продуктів і справжнього перфекціонізму.</p>
-                    <p>Сьогодні я створюю персоналізовані гастрономічні враження: вечері на двох, сімейні свята, майстер-класи. Люблю поєднувати українську кулінарну спадщину з сучасними техніками — сезонні локальні продукти, ферментацію, точну подачу та несподівані смакові поєднання.</p>
-                    <p>Будь то тихий вечір удвох чи велика подія — кожне меню створюється саме під вас: алергії, вподобання, настрій і історію.</p>
-                `
-            }
-        };
+  let currentLang = "en";
 
-        let currentLang = 'en';
+  function updateUI() {
+    const data = langData[currentLang];
+    document.getElementById("title").innerHTML = data.title;
+    document.getElementById("nav-back").innerHTML = `<span>←</span> ${data.back}`;
+    document.getElementById("support-desc").innerText = data.supportDesc;
+    document.getElementById("main-text").innerHTML = data.content;
+    document.getElementById("contact-area").innerHTML =
+      data.contact + '<br><a href="mailto:butkowski.illia@gmail.com">butkowski.illia@gmail.com</a>';
+    document.getElementById("lang-toggle").innerText = currentLang === "en" ? "UA" : "EN";
+    document.getElementById("page-title").innerText =
+      (currentLang === "en" ? "About Me" : "Про мене") + " - scullion";
+  }
 
-        function updateUI() {
-            const data = langData[currentLang];
-            document.getElementById('title').innerHTML = data.title;
-            document.getElementById('nav-back').innerHTML = `<span>←</span> ${data.back}`;
-            document.getElementById('support-desc').innerText = data.supportDesc;
-            document.getElementById('main-text').innerHTML = data.content;
-            document.getElementById('contact-area').innerHTML = data.contact + '<br><a href="mailto:butkowski.illia@gmail.com">butkowski.illia@gmail.com</a>';
-            document.getElementById('lang-toggle').innerText = currentLang === 'en' ? 'UA' : 'EN';
-            document.getElementById('page-title').innerText = (currentLang === 'en' ? "About Me" : "Про мене") + " - scullion";
-        }
+  function toggleLanguage() {
+    currentLang = currentLang === "en" ? "uk" : "en";
+    updateUI();
+  }
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'uk' : 'en';
-            updateUI();
-        }
-
-        updateUI();
-    </script>
-</body>
-</html>
+  updateUI();
+</script>

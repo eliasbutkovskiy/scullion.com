@@ -1,67 +1,164 @@
-<script>
-  const langData = {
-    en: {
-      title: "About<br>Me",
-      back: "Main",
-      supportDesc:
-        "This project runs on passion and coffee. If you want to support new recipes, photoshoots, development, or just say thanks — any help matters:",
-      contact:
-        "Spotted a typo? Got menu ideas, dietary requests, or want to book a dinner? Hit me up:",
-      content: `
-        <p><span class="accent">If I'm honest</span> — I have absolutely no idea what you're supposed to write here.</p>
-        <p>So here’s a bit of wisdom from a cartoon about a rat:</p>
-
-        <div class="feature-note" style="margin: 30px 0;">
-          <strong>“Cooking is not for the weak!”</strong> You have to be inventive, brave, try and fail…<br>
-          And don’t think your background can stop you — listen to your soul…<br>
-          This is true: <span class="accent">anyone can cook</span>, but <span class="accent">only the brave reach the heights</span>.
-        </div>
-
-        <p>Anyway — welcome. I cook, plate, and obsess over the details so the food speaks louder than this section ever will.</p>
-      `
-    },
-
-    uk: {
-      title: "Про<br>мене",
-      back: "Головна",
-      supportDesc:
-        "Цей проєкт тримається на ентузіазмі та каві. Якщо хочете підтримати нові рецепти, фотосесії, розвиток або просто подякувати — будь-яка допомога важлива:",
-      contact:
-        "Помітили помилку? Маєте ідеї меню, побажання по дієті чи хочете забронювати вечерю? Пишіть:",
-      content: `
-        <p><span class="accent">Якщо чесно</span> — не маю жодного поняття, що тут треба писати.</p>
-        <p>Тому ось мудрість з мультика про пацюка:</p>
-
-        <div class="feature-note" style="margin: 30px 0;">
-          <strong>«Вміння куховарити не для слабаків!»</strong> Треба бути вигадливим, хоробрим, пробувати і помилятись…<br>
-          І не думати, що тобі може стати на заваді твоє походження — слухайся своєї душі…<br>
-          Це правда: <span class="accent">готувати може кожен</span>, але <span class="accent">досягти висот — лиш сміливці</span>!
-        </div>
-
-        <p>Коротше: я готую, подаю й задовбуюсь над деталями так, щоб їжа сказала більше, ніж ця сторінка.</p>
-      `
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Про мене - scullion</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231A2517'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='50' fill='%23ACC8A2'>SC</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ACC8A2;
+      --bg: #1A2517;
+      --panel: #243022;
+      --text: #f0f0f0;
+      --muted: #bbb;
+      --border: #2F3A2A;
     }
-  };
 
-  let currentLang = "en";
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', sans-serif; margin: 0;
+      -webkit-font-smoothing: antialiased;
+      background-image: radial-gradient(circle at 50% -20%, #2f3a2a 0%, #1A2517 60%);
+      min-height: 100vh;
+    }
 
-  function updateUI() {
-    const data = langData[currentLang];
-    document.getElementById("title").innerHTML = data.title;
-    document.getElementById("nav-back").innerHTML = `<span>←</span> ${data.back}`;
-    document.getElementById("support-desc").innerText = data.supportDesc;
-    document.getElementById("main-text").innerHTML = data.content;
-    document.getElementById("contact-area").innerHTML =
-      data.contact + '<br><a href="mailto:butkowski.illia@gmail.com">butkowski.illia@gmail.com</a>';
-    document.getElementById("lang-toggle").innerText = currentLang === "en" ? "UA" : "EN";
-    document.getElementById("page-title").innerText =
-      (currentLang === "en" ? "About Me" : "Про мене") + " - scullion";
-  }
+    .nav-glass {
+      background: rgba(26, 37, 23, 0.8);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+      padding: 15px 25px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .btn-back {
+      color: var(--muted); text-decoration: none;
+      font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      transition: 0.3s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .btn-back:hover { color: var(--primary); }
+    .btn-lang {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--primary);
+      padding: 8px 16px; border-radius: 8px;
+      font-weight: 900; cursor: pointer;
+      text-transform: uppercase; font-size: 0.8rem;
+      transition: 0.3s;
+    }
+    .btn-lang:hover { background: var(--primary); color: #1A2517; }
 
-  function toggleLanguage() {
-    currentLang = currentLang === "en" ? "uk" : "en";
+    .container { max-width: 800px; margin: 40px auto; padding: 0 20px 100px; }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: -2px; line-height: 0.9;
+      margin-bottom: 40px;
+      background: linear-gradient(to bottom, #f0f0f0 40%, #bbb 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .main-content { font-size: 1.15rem; line-height: 1.8; color: #ccc; }
+    .main-content p { margin-bottom: 25px; }
+    .accent { color: var(--primary); font-weight: 700; }
+
+    .feature-note {
+      background: #243022;
+      border-left: 4px solid var(--primary);
+      padding: 30px; border-radius: 0 16px 16px 0;
+      margin: 35px 0; color: #f0f0f0; font-size: 1.05rem;
+      box-shadow: 10px 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .contact-area {
+      margin-top: 60px; border-top: 1px solid var(--border);
+      padding-top: 30px; font-size: 0.9rem; color: var(--muted);
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    @media (max-width: 600px) {
+      .container { margin: 20px auto; }
+      .hero-title { letter-spacing: -1px; margin-bottom: 30px; }
+      .main-content { font-size: 1.05rem; }
+      .feature-note { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-glass">
+    <a href="index.html" class="btn-back" id="nav-back"><span>←</span> Головна</a>
+    <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">EN</button>
+  </nav>
+
+  <div class="container">
+    <h1 class="hero-title" id="title">Про<br>мене</h1>
+
+    <div class="main-content" id="main-text"></div>
+
+    <div class="contact-area" id="contact-area"></div>
+  </div>
+
+  <script>
+    const langData = {
+      uk: {
+        title: "Про<br>мене",
+        back: "Головна",
+        contact: "Нагадування: якщо помітив(ла) помилку або маєш ідею для меню — напиши мені будь-де, де зручно.",
+        content: `
+          <p><span class="accent">Якщо чесно</span> — не маю жодного поняття, що тут треба писати. Тому ось мудрість з мультика про пацюка:</p>
+
+          <div class="feature-note">
+            <strong>«Вміння куховарити не для слабаків!»</strong><br>
+            Треба бути вигадливим, хоробрим, пробувати і помилятись…<br>
+            І не думати, що тобі може стати на заваді твоє походження — слухайся своєї душі…<br>
+            Це правда: <span class="accent">готувати може кожен</span>, але <span class="accent">досягти висот — лиш сміливці</span>!
+          </div>
+        `
+      },
+
+      en: {
+        title: "About<br>Me",
+        back: "Main",
+        contact: "Reminder: if you spot a typo or have a menu idea — message me anywhere that’s convenient.",
+        content: `
+          <p><span class="accent">If I’m honest</span> — I have absolutely no idea what you’re supposed to write here. So here’s a bit of wisdom from a cartoon about a rat:</p>
+
+          <div class="feature-note">
+            <strong>“Great cooking is not for the faint of heart.”</strong><br>
+            You must be imaginative, strong-hearted. You must try things that may not work.<br>
+            And you must not let anyone define your limits because of where you come from.<br>
+            Your only limit is your soul. What I say is true — <span class="accent">anyone can cook</span>… but <span class="accent">only the fearless can be great</span>.
+          </div>
+        `
+      }
+    };
+
+    // Українська — дефолт
+    let currentLang = "uk";
+
+    function updateUI() {
+      const data = langData[currentLang];
+
+      document.documentElement.lang = currentLang === "uk" ? "uk" : "en";
+      document.getElementById("title").innerHTML = data.title;
+      document.getElementById("nav-back").innerHTML = `<span>←</span> ${data.back}`;
+      document.getElementById("main-text").innerHTML = data.content;
+      document.getElementById("contact-area").innerText = data.contact;
+
+      document.getElementById("lang-toggle").innerText = currentLang === "uk" ? "EN" : "UA";
+      document.getElementById("page-title").innerText =
+        (currentLang === "uk" ? "Про мене" : "About Me") + " - scullion";
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === "uk" ? "en" : "uk";
+      updateUI();
+    }
+
     updateUI();
-  }
-
-  updateUI();
-</script>
+  </script>
+</body>
+</html>

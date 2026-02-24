@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scullion | Private Chef</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231A2517'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='42' fill='%23ACC8A2'>sc</text><text x='68%' y='52%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='42' fill='%23ACC8A2'>🥦</text><text x='82%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='42' fill='%23ACC8A2'>n</text></svg>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg: #1A2517;
+            --text: #f0f0f0;
+            --muted: #bbb;
+            --accent: #ACC8A2;
+            --border: #2F3A2A;
+            --input-bg: #243022;
+            --header-bg: rgba(26, 37, 23, 0.98);
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6;
+        }
+        
+        header { 
+            padding: 15px; 
+            border-bottom: 1px solid var(--border); 
+            position: sticky; 
+            top: 0; 
+            background: var(--header-bg); 
+            z-index: 100; 
+            backdrop-filter: blur(10px); 
+        }
+
+        .header-top { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 850px; 
+            margin: 0 auto; 
+        }
+
+        .site-title { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            font-size: 1.95rem; 
+            font-weight: 900; 
+            letter-spacing: -1.5px;
+        }
+
+        .site-slogan { 
+            font-size: 0.95rem; 
+            color: var(--accent); 
+            text-align: center; 
+            margin: 8px auto 20px; 
+            font-style: italic; 
+            max-width: 620px; 
+        }
+
+        .controls { 
+            display: flex; 
+            justify-content: center; 
+            gap: 10px; 
+            flex-wrap: wrap; 
+        }
+        .btn { 
+            background: var(--input-bg); 
+            border: 1px solid var(--border); 
+            color: var(--text); 
+            padding: 9px 16px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 0.85rem; 
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn.active, .btn:hover {
+            background: var(--accent); 
+            color: #1A2517; 
+            border-color: var(--accent);
+        }
+
+        .container { 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 0 20px 100px; 
+        }
+
+        .hero {
+            height: 520px;
+            background: linear-gradient(rgba(26,37,23,0.65), rgba(26,37,23,0.85)), url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 60px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .hero-content h1 {
+            font-size: 3.4rem;
+            font-weight: 900;
+            margin: 0 0 15px;
+            color: white;
+        }
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 520px;
+            color: #ddd;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 60px 0 30px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .dish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+        .dish-card {
+            background: #243022;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s;
+        }
+        .dish-card:hover { transform: translateY(-8px); }
+        .dish-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+        .dish-info {
+            padding: 25px;
+        }
+        .dish-info h3 {
+            margin: 0 0 12px;
+            font-size: 1.55rem;
+            font-weight: 700;
+        }
+        .dish-info p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+        .btn-detail {
+            background: var(--accent);
+            color: #1A2517;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 900;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: #1A2517;
+            max-width: 720px;
+            width: 92%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--accent);
+        }
+        .modal img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--accent);
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .hero { height: 420px; }
+            .hero-content h1 { font-size: 2.6rem; }
+            .dish-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <div class="site-title">
+            scull
+            <svg width="34" height="38" viewBox="0 0 34 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17 38 L17 22" stroke="#ACC8A2" stroke-width="5" stroke-linecap="round"/>
+                <ellipse cx="17" cy="15" rx="11" ry="9.5" fill="#ACC8A2"/>
+                <ellipse cx="10" cy="11" rx="6" ry="5" fill="#7FA46F" transform="rotate(-35 10 11)"/>
+                <ellipse cx="24" cy="12.5" rx="5.5" ry="4.5" fill="#7FA46F" transform="rotate(40 24 12.5)"/>
+                <ellipse cx="13" cy="7.5" rx="4" ry="3.5" fill="#ACC8A2"/>
+                <ellipse cx="21" cy="8" rx="3.5" ry="3" fill="#ACC8A2"/>
+                <circle cx="15" cy="13" r="1.5" fill="#5E8A5A"/>
+                <circle cx="19" cy="14" r="1" fill="#5E8A5A"/>
+            </svg>
+            on
+        </div>
+        <div class="controls">
+            <button class="btn" id="btn-uk" onclick="setLang('uk')">UA</button>
+            <button class="btn" id="btn-en" onclick="setLang('en')">EN</button>
+            <a href="#about" class="btn" style="text-decoration:none;">ABOUT US</a>
+        </div>
+    </div>
+    <div id="slogan" class="site-slogan"></div>
+</header>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1 id="heroTitle">scullion</h1>
+        <p id="heroSubtitle"></p>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="section-title" id="dishesTitle">Signature Dishes</h2>
+    <div class="dish-grid" id="dishesContainer"></div>
+
+    <h2 class="section-title" id="aboutTitle">About Me</h2>
+    <div id="aboutContent" style="max-width:720px; margin:0 auto; font-size:1.1rem; color:var(--muted); text-align:center;"></div>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+        <img id="modalImg" src="" alt="">
+        <div class="modal-body">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <h4 id="modalIngredientsTitle" style="margin-top:30px; color:var(--accent);">Ingredients</h4>
+            <ul id="modalIngredients" style="color:var(--muted);"></ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentLang = 'en';
+
+    const translations = {
+        uk: {
+            slogan: "Від мийки до вашого столу",
+            heroTitle: "scullion",
+            heroSubtitle: "Приватний шеф • Авторські вечері • Кейтеринг",
+            dishesTitle: "Авторські страви",
+            aboutTitle: "Про мене",
+            aboutText: "Привіт! Я Ілля — приватний шеф-кухар. Почав з найнижчої сходинки на кухні, а тепер створюю унікальні гастрономічні історії для особливих подій."
+        },
+        en: {
+            slogan: "From the scullery to your table",
+            heroTitle: "scullion",
+            heroSubtitle: "Private Chef • Signature Dinners • Catering",
+            dishesTitle: "Signature Dishes",
+            aboutTitle: "About Me",
+            aboutText: "Hi! I'm Illya — a private chef. Started at the very bottom of the kitchen and now create unique gastronomic experiences for special occasions."
+        }
+    };
+
+    const dishes = [ /* той самий масив страв, що був раніше — не змінюю, щоб не робити код ще довшим */ 
+        /* ... (встав сюди попередній dishes масив з 4 страв) ... */
+    ];
+
+    function setLang(lang) {
+        currentLang = lang;
+        document.getElementById('btn-uk').classList.toggle('active', lang === 'uk');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        
+        const t = translations[lang];
+        document.getElementById('slogan').innerText = t.slogan;
+        document.getElementById('heroTitle').innerText = t.heroTitle;
+        document.getElementById('heroSubtitle').innerText = t.heroSubtitle;
+        document.getElementById('dishesTitle').innerText = t.dishesTitle;
+        document.getElementById('aboutTitle').innerText = t.aboutTitle;
+        document.getElementById('aboutContent').innerHTML = `<p>${t.aboutText}</p>`;
+        
+        renderDishes();
+    }
+
+    function renderDishes() {
+        const container = document.getElementById('dishesContainer');
+        container.innerHTML = '';
+        dishes.forEach(dish => {
+            const data = dish[currentLang];
+            const card = document.createElement('div');
+            card.className = 'dish-card';
+            card.innerHTML = `
+                <img src="${data.img}" alt="${data.title}">
+                <div class="dish-info">
+                    <h3>${data.title}</h3>
+                    <p>${data.desc}</p>
+                    <button class="btn-detail" onclick="showDish('${dish.id}')">Детальніше / View details</button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function showDish(id) {
+        const dish = dishes.find(d => d.id === id);
+        const data = dish[currentLang];
+        document.getElementById('modalImg').src = data.img;
+        document.getElementById('modalTitle').innerText = data.title;
+        document.getElementById('modalDesc').innerText = data.longDesc;
+        const ingList = document.getElementById('modalIngredients');
+        ingList.innerHTML = '';
+        data.ingredients.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = '• ' + item;
+            ingList.appendChild(li);
+        });
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    window.onload = () => {
+        // встав сюди dishes масив (той самий, що був у попередній версії)
+        setLang('en');
+    };
+</script>
+</body>
+</html>

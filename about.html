@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">Про мене - scullion</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231A2517'/><text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='50' fill='%23ACC8A2'>SC</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Шрифти -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;1,500;1,600&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary: #ACC8A2;
       --bg: #1A2517;
-      --panel: #243022;
       --text: #f0f0f0;
       --muted: #bbb;
       --border: #2F3A2A;
@@ -22,12 +22,10 @@
       color: var(--text);
       font-family: 'Inter', sans-serif;
       margin: 0;
-      -webkit-font-smoothing: antialiased;
       background-image: radial-gradient(circle at 50% -20%, #2f3a2a 0%, #1A2517 60%);
-      min-height: 100vh;
     }
 
-    /* Навігація */
+    /* NAV */
     .nav-glass {
       background: rgba(26, 37, 23, 0.8);
       backdrop-filter: blur(15px);
@@ -35,10 +33,8 @@
       padding: 15px 25px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       position: sticky;
       top: 0;
-      z-index: 1000;
     }
 
     .btn-back {
@@ -46,116 +42,87 @@
       text-decoration: none;
       font-weight: 700;
       font-size: 0.85rem;
-      text-transform: uppercase;
       letter-spacing: 1.5px;
-      transition: 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
-    .btn-back:hover { color: var(--primary); }
 
     .btn-lang {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--primary);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-weight: 900;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 700;
       cursor: pointer;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      transition: 0.3s;
     }
-    .btn-lang:hover { background: var(--primary); color: #1A2517; }
 
     .container {
-      max-width: 800px;
+      max-width: 760px;
       margin: 40px auto;
-      padding: 0 20px 100px;
+      padding: 0 20px 80px;
     }
 
-    /* Заголовок — МЕНШИЙ */
+    /* Заголовок стриманий */
     .hero-title {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: 2.2rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: -1px;
-      line-height: 1;
-      margin-bottom: 25px;
       opacity: 0.85;
-      background: linear-gradient(to bottom, #f0f0f0 40%, #bbb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      margin-bottom: 25px;
     }
 
     .main-content {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       line-height: 1.8;
       color: #ccc;
     }
-    .main-content p { margin-bottom: 25px; }
-    .accent { color: var(--primary); font-weight: 700; }
 
-    /* Цитата — БІЛЬША І КРАЩА */
-    .feature-note {
-      background: #243022;
-      border-left: 4px solid var(--primary);
-      padding: 40px 35px;
-      border-radius: 0 18px 18px 0;
-      margin: 40px 0 30px;
-      font-size: 1.25rem;
-      line-height: 1.9;
-      color: #f0f0f0;
-      box-shadow: 10px 10px 40px rgba(0,0,0,0.4);
-      position: relative;
-    }
-
-    .feature-note strong {
-      display: block;
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      letter-spacing: 0.5px;
-    }
-
-    .feature-note::before {
-      content: "“";
-      position: absolute;
-      font-size: 4rem;
-      top: 10px;
-      left: 15px;
+    .accent {
       color: var(--primary);
-      opacity: 0.15;
-      font-weight: 900;
+      font-weight: 700;
+    }
+
+    /* Елегантна цитата */
+    .feature-note {
+      margin: 30px 0 20px;
+      padding-left: 18px;
+      border-left: 2px solid var(--primary);
+
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    /* Фінальний акцент */
+    .quote-final {
+      display: block;
+      margin-top: 12px;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--primary);
     }
 
     .contact-area {
-      margin-top: 60px;
+      margin-top: 50px;
       border-top: 1px solid var(--border);
-      padding-top: 30px;
+      padding-top: 20px;
       font-size: 0.9rem;
       color: var(--muted);
       font-family: 'Roboto Mono', monospace;
-    }
-
-    @media (max-width: 600px) {
-      .container { margin: 20px auto; }
-      .hero-title { margin-bottom: 20px; }
-      .main-content { font-size: 1.05rem; }
-      .feature-note { padding: 26px 20px; font-size: 1.12rem; }
-      .feature-note strong { font-size: 1.35em; }
     }
   </style>
 </head>
 
 <body>
   <nav class="nav-glass">
-    <a href="index.html" class="btn-back" id="nav-back"><span>←</span> Головна</a>
+    <a href="index.html" class="btn-back" id="nav-back">← Головна</a>
     <button class="btn-lang" onclick="toggleLanguage()" id="lang-toggle">EN</button>
   </nav>
 
   <div class="container">
-    <h1 class="hero-title" id="title">Про<br>мене</h1>
+    <h1 class="hero-title" id="title">Про мене</h1>
     <div class="main-content" id="main-text"></div>
     <div class="contact-area" id="contact-area"></div>
   </div>
@@ -163,53 +130,51 @@
   <script>
     const langData = {
       uk: {
-        title: "Про<br>мене",
-        back: "Головна",
+        title: "Про мене",
+        back: "← Головна",
         contact: "Нагадування: якщо помітив(ла) помилку або маєш ідею для меню — напиши мені будь-де, де зручно.",
         content: `
           <p><span class="accent">Якщо чесно</span> — не маю жодного поняття, що тут треба писати. Тому ось мудрість з мультика про пацюка:</p>
 
           <div class="feature-note">
-            <strong>«Вміння куховарити не для слабаків!»</strong>
-            Треба бути вигадливим, хоробрим, пробувати і помилятись…<br>
-            І не думати, що тобі може стати на заваді твоє походження — слухайся своєї душі…<br>
-            Це правда: <span class="accent">готувати може кожен</span>, але <span class="accent">досягти висот — лиш сміливці</span>!
+            «Вміння куховарити не для слабаків. Треба бути вигадливим, хоробрим, пробувати і помилятись…<br>
+            І не думати, що тобі може стати на заваді твоє походження — слухайся своєї душі.»
+            <span class="quote-final">
+              Готувати може кожен, але досягти висот — лиш сміливці.
+            </span>
           </div>
         `
       },
 
       en: {
-        title: "About<br>Me",
-        back: "Main",
+        title: "About",
+        back: "← Main",
         contact: "Reminder: if you spot a typo or have a menu idea — message me anywhere that’s convenient.",
         content: `
-          <p><span class="accent">If I’m honest</span> — I have absolutely no idea what you’re supposed to write here. So here’s a bit of wisdom from a cartoon about a rat:</p>
+          <p><span class="accent">If I’m honest</span> — I have absolutely no idea what you're supposed to write here. So here’s a bit of wisdom from a cartoon about a rat:</p>
 
           <div class="feature-note">
-            <strong>“Great cooking is not for the faint of heart.”</strong>
-            You must be imaginative, strong-hearted. You must try things that may not work.<br>
-            And you must not let anyone define your limits because of where you come from.<br>
-            Your only limit is your soul. What I say is true — <span class="accent">anyone can cook</span>… but <span class="accent">only the fearless can be great</span>.
+            “Great cooking is not for the faint of heart. You must be imaginative, strong-hearted.<br>
+            You must not let anyone define your limits because of where you come from.”
+            <span class="quote-final">
+              Anyone can cook… but only the fearless can be great.
+            </span>
           </div>
         `
       }
     };
 
-    // Українська — дефолт
     let currentLang = "uk";
 
     function updateUI() {
       const data = langData[currentLang];
-
-      document.documentElement.lang = currentLang === "uk" ? "uk" : "en";
-      document.getElementById("title").innerHTML = data.title;
-      document.getElementById("nav-back").innerHTML = `<span>←</span> ${data.back}`;
+      document.getElementById("title").innerText = data.title;
+      document.getElementById("nav-back").innerText = data.back;
       document.getElementById("main-text").innerHTML = data.content;
       document.getElementById("contact-area").innerText = data.contact;
-
       document.getElementById("lang-toggle").innerText = currentLang === "uk" ? "EN" : "UA";
       document.getElementById("page-title").innerText =
-        (currentLang === "uk" ? "Про мене" : "About Me") + " - scullion";
+        (currentLang === "uk" ? "Про мене" : "About") + " - scullion";
     }
 
     function toggleLanguage() {

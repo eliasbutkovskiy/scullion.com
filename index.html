@@ -55,12 +55,29 @@
             text-align: center;
         }
 
+        .broccoli-icon {
+            width: 36px;
+            height: 40px;
+            transition: transform 0.4s ease;
+        }
+
+        .broccoli-icon:hover {
+            transform: scale(1.15) rotate(8deg);
+            animation: breathe 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes breathe {
+            from { transform: scale(1.15) rotate(8deg); }
+            to   { transform: scale(1.22) rotate(8deg); }
+        }
+
         .controls { 
             display: flex; 
             justify-content: center; 
             gap: 8px; 
             flex-wrap: wrap; 
         }
+
         .btn { 
             background: var(--input-bg); 
             border: 1px solid var(--border); 
@@ -72,7 +89,9 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn.active, .btn:hover {
+
+        .btn.active, 
+        .btn:hover {
             background: var(--accent); 
             color: #1A2517; 
             border-color: var(--accent);
@@ -82,24 +101,17 @@
             border-color: var(--accent); 
             color: var(--accent); 
             background: transparent; 
+            text-decoration: none;
         }
 
-        .site-slogan { 
-            font-size: 0.9rem; 
-            color: var(--accent); 
-            text-align: center; 
-            margin: 5px auto 15px; 
-            font-weight: 400; 
-            font-style: italic; 
-            max-width: 600px; 
-            line-height: 1.4; 
+        .passport-btn:hover {
+            background: rgba(172, 200, 162, 0.12);
         }
 
         @media (max-width: 600px) {
             .header-top { margin-bottom: 10px; }
             .site-title { font-size: 1.5rem; margin: 0 5px; }
             .btn, .passport-btn { padding: 8px 12px; font-size: 0.8rem; }
-            .site-slogan { font-size: 0.8rem; padding: 0 10px; }
         }
     </style>
 </head>
@@ -109,7 +121,7 @@
     <div class="header-top">
         <div class="site-title">
             scull
-            <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="broccoli-icon" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 40 L18 23" stroke="#ACC8A2" stroke-width="5.5" stroke-linecap="round"/>
                 <ellipse cx="18" cy="16" rx="12" ry="10" fill="#ACC8A2"/>
                 <ellipse cx="10.5" cy="12" rx="6.5" ry="5.5" fill="#7FA46F" transform="rotate(-35 10.5 12)"/>
@@ -128,23 +140,15 @@
             <a href="about.html" class="btn passport-btn">ABOUT US</a>
         </div>
     </div>
-
-    <div id="slogan" class="site-slogan"></div>
 </header>
 
 <script>
     let currentLang = 'en';
 
-    const translations = {
-        uk: { slogan: "Від мийки до вашого столу" },
-        en: { slogan: "From the scullery to your table" }
-    };
-
     function setLang(lang) {
         currentLang = lang;
         document.getElementById('btn-uk').classList.toggle('active', lang === 'uk');
         document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-        document.getElementById('slogan').innerText = translations[lang].slogan;
     }
 
     window.onload = () => setLang('en');
